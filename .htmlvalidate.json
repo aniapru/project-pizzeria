@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "void-style": [
+      "error",
+      {
+        "style": "selfclosing"
+      }
+    ]
+  }
+}
