@@ -110,6 +110,11 @@
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
+
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
+      console.log(thisProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -185,7 +190,8 @@
           console.log(optionId, option);
 
           // check if option is chosen
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          if (optionSelected) {
             console.log('Wybrano!');
             // chceck if option is not default
             if (!option.default) {
@@ -197,6 +203,21 @@
             if (option.default) {
               //reduce price variable
               price -= option.price;
+            }
+          }
+
+          // find img with class .paramId-optionId 
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId
+          );
+          console.log(optionImage);
+          
+          // check if img is found
+          if(optionImage) {
+            // check if the option is chosen
+            if (optionSelected) {
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
         }
