@@ -235,7 +235,7 @@
           // check if option is chosen
           const optionSelected =
             //formData[paramId] && formData[paramId].includes(optionId);
-            formData[paramId]?.includes(optionId);
+            formData[paramId] && formData[paramId].includes(optionId);
           if (optionSelected) {
             //console.log('Wybrano!');
             // chceck if option is not default
@@ -333,7 +333,8 @@
           const option = param.options[optionId];
           // console.log(optionId, option);
 
-          const optionSelected = formData[paramId]?.includes(optionId);
+          const optionSelected =
+            formData[paramId] && formData[paramId].includes(optionId);
 
           if (optionSelected) {
             params[paramId].options[optionId] = option.label;
@@ -354,7 +355,7 @@
       thisWidget.setValue(settings.amountWidget.defaultValue);
 
       //console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      // console.log('constructor arguments:', element);
     }
 
     getElements(element) {
@@ -442,6 +443,18 @@
       thisCart.dom.productList = thisCart.dom.wrapper.querySelector(
         select.cart.productList
       );
+      thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(
+        select.cart.deliveryFee
+      );
+      thisCart.dom.subtotalPrice = thisCart.dom.wrapper.querySelector(
+        select.cart.subtotalPrice
+      );
+      thisCart.dom.totalPrice = thisCart.dom.wrapper.querySelectorAll(
+        select.cart.totalPrice
+      );
+      thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(
+        select.cart.totalNumber
+      );
     }
 
     initActions() {
@@ -471,6 +484,35 @@
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products', thisCart.products);
+
+      thisCart.update();
+    }
+
+    update() {
+      const thisCart = this;
+
+      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let totalNumber = 0;
+      let subtotalPrice = 0;
+
+      for (let CartProduct of thisCart.products) {
+        totalNumber += CartProduct.amount;
+        subtotalPrice += CartProduct.price;
+      }
+      console.log(totalNumber);
+      console.log(subtotalPrice);
+
+      if (totalNumber == 0) {
+        thisCart.totalPrice = subtotalPrice;
+      } else {
+        thisCart.totalPrice = subtotalPrice + deliveryFee;
+      }
+
+      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+      thisCart.dom.totalPrice[0].innerHTML = thisCart.totalPrice;
+      thisCart.dom.totalPrice[1].innerHTML = thisCart.totalPrice;
     }
   }
 
@@ -487,7 +529,7 @@
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
-      //console.log(thisCartProduct);
+      console.log(thisCartProduct);
     }
 
     getElements(element) {
@@ -509,7 +551,6 @@
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(
         select.cartProduct.remove
       );
-      console.log(thisCartProduct);
     }
 
     initAmountWidget() {
@@ -518,9 +559,11 @@
       thisCartProduct.amountWidget = new AmountWidget(
         thisCartProduct.dom.amountWidget
       );
+      console.log(thisCartProduct.amountWidget);
 
       thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        //console.log(thisCartProduct);
         thisCartProduct.price =
           thisCartProduct.priceSingle * thisCartProduct.amountWidget.value;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
