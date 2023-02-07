@@ -234,8 +234,8 @@
 
           // check if option is chosen
           const optionSelected =
-            //formData[paramId] && formData[paramId].includes(optionId);
             formData[paramId] && formData[paramId].includes(optionId);
+          //formData[paramId]?.includes(optionId);
           if (optionSelected) {
             //console.log('Wybrano!');
             // chceck if option is not default
@@ -352,7 +352,7 @@
 
       thisWidget.getElements(element);
       thisWidget.initActions();
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(thisWidget.input.value);
 
       //console.log('AmountWidget:', thisWidget);
       //console.log('constructor arguments:', element);
@@ -379,6 +379,11 @@
       const newValue = parseInt(value);
 
       /* TODO add validation  */
+
+      // set default value
+      if (thisWidget.value == undefined) {
+        thisWidget.value = settings.amountWidget.defaultValue;
+      }
 
       if (
         // check if newValue is equal or different than current & if it's not a null & give the range of numbers
@@ -507,14 +512,16 @@
         totalNumber += cartProduct.amount;
         subtotalPrice += cartProduct.price;
       }
-      console.log(totalNumber);
-      console.log(subtotalPrice);
 
-      if (totalNumber == 0) {
+      /* if (totalNumber == 0) {
         thisCart.totalPrice = subtotalPrice;
       } else {
         thisCart.totalPrice = subtotalPrice + deliveryFee;
-      }
+      } */
+
+      totalNumber == 0
+        ? (thisCart.totalPrice = subtotalPrice)
+        : (thisCart.totalPrice = subtotalPrice + deliveryFee);
 
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.totalNumber.innerHTML = totalNumber;
