@@ -352,7 +352,9 @@
 
       thisWidget.getElements(element);
       thisWidget.initActions();
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(
+        thisWidget.input.value || settings.amountWidget.defaultValue
+      );
 
       //console.log('AmountWidget:', thisWidget);
       //console.log('constructor arguments:', element);
@@ -379,11 +381,6 @@
       const newValue = parseInt(value);
 
       /* TODO add validation  */
-
-      // set default value
-      if (thisWidget.value == undefined) {
-        thisWidget.value = settings.amountWidget.defaultValue;
-      }
 
       if (
         // check if newValue is equal or different than current & if it's not a null & give the range of numbers
@@ -507,7 +504,6 @@
       const deliveryFee = settings.cart.defaultDeliveryFee;
       let totalNumber = 0;
       let subtotalPrice = 0;
-
       for (let cartProduct of thisCart.products) {
         totalNumber += cartProduct.amount;
         subtotalPrice += cartProduct.price;
@@ -534,11 +530,10 @@
       const thisCart = this;
       // remove elem form DOM
       const removeProduct = cartProduct.dom.wrapper.remove();
-      console.log(removeProduct);
 
       // remove elem form array
-      thisCart.products.indexOf(cartProduct);
-      thisCart.products.splice(removeProduct, 1);
+      const indexOfProduct = thisCart.products.indexOf(cartProduct);
+      thisCart.products.splice(indexOfProduct, 1);
 
       // count sum of products again
       thisCart.update();
