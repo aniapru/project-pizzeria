@@ -529,7 +529,7 @@
     remove(cartProduct) {
       const thisCart = this;
       // remove elem form DOM
-      const removeProduct = cartProduct.dom.wrapper.remove();
+      cartProduct.dom.wrapper.remove();
 
       // remove elem form array
       const indexOfProduct = thisCart.products.indexOf(cartProduct);
