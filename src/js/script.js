@@ -462,6 +462,16 @@
       thisCart.dom.totalNumber = thisCart.dom.wrapper.querySelector(
         select.cart.totalNumber
       );
+
+      thisCart.dom.form = thisCart.dom.wrapper.querySelector(select.cart.form);
+
+      thisCart.dom.formPhone = thisCart.dom.form.querySelector(
+        select.cart.phone
+      );
+
+      thisCart.dom.formAddress = thisCart.dom.form.querySelector(
+        select.cart.address
+      );
     }
 
     initActions() {
@@ -478,6 +488,29 @@
       thisCart.dom.productList.addEventListener('remove', function (event) {
         thisCart.remove(event.detail.cartProduct);
       });
+
+      thisCart.dom.form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        thisCart.sendOrder();
+      });
+    }
+
+    sendOrder() {
+      const thisCart = this;
+
+      //const url = settings.db.url + '/' + settings.db.orders;
+
+      const playload = {
+        address: thisCart.dom.formAddress.value,
+        phone: thisCart.dom.formPhone.value,
+        totalPrice: thisCart.totalPrice,
+        subtotalPrice: thisCart.dom.subtotalPrice.innerHTML,
+        totalNumber: thisCart.dom.totalNumber.innerHTML,
+        deliveryFee: thisCart.dom.deliveryFee.innerHTML,
+        products: {},
+      };
+
+      console.log(playload);
     }
 
     add(menuProduct) {
@@ -514,17 +547,15 @@
         subtotalPrice += cartProduct.price;
       }
 
-      /* if (totalNumber == 0) {
+      if (totalNumber == 0) {
         thisCart.totalPrice = subtotalPrice;
+        thisCart.deliveryFee = 0;
       } else {
         thisCart.totalPrice = subtotalPrice + deliveryFee;
-      } */
+        thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
+      }
 
-      totalNumber == 0
-        ? (thisCart.totalPrice = subtotalPrice)
-        : (thisCart.totalPrice = subtotalPrice + deliveryFee);
-
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
       thisCart.dom.totalPrice[0].innerHTML = thisCart.totalPrice;
