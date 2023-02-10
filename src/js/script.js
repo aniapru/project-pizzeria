@@ -273,11 +273,12 @@
           }
         }
       }
-      // multiply price by amount
-      price *= thisProduct.amountWidget.value;
 
       // price of single product
-      thisProduct.priceSingle = thisProduct.data.price;
+      thisProduct.priceSingle = price;
+
+      // multiply price by amount
+      price *= thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
@@ -325,7 +326,7 @@
       // for every category (param)
       for (let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
-        console.log(paramId, param);
+        //console.log(paramId, param);
 
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
@@ -554,6 +555,7 @@
     update() {
       const thisCart = this;
 
+      const deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
 
@@ -566,7 +568,7 @@
         thisCart.totalPrice = thisCart.subtotalPrice;
         thisCart.deliveryFee = 0;
       } else {
-        thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+        thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
         thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       }
 
@@ -634,7 +636,6 @@
       thisCartProduct.amountWidget = new AmountWidget(
         thisCartProduct.dom.amountWidget
       );
-      console.log(thisCartProduct.amountWidget);
 
       thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
         thisCartProduct.amount = thisCartProduct.amountWidget.value;
