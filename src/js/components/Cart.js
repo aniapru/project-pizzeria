@@ -26,7 +26,6 @@ class Cart {
     thisCart.dom.productList = thisCart.dom.wrapper.querySelector(
       select.cart.productList
     );
-    console.log(thisCart.dom.productList);
     thisCart.dom.deliveryFee = thisCart.dom.wrapper.querySelector(
       select.cart.deliveryFee
     );
