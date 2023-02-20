@@ -232,7 +232,7 @@
     },
     {
       "id": 4,
-      "date": "2023-02-19",
+      "date": "2023-03-04",
       "hour": "13:00",
       "table": 2,
       "repeat": "daily",
@@ -251,16 +251,5 @@
       "starters": ["lemonWater"]
     }
   ],
-  "bookings": [
-    {
-      "id": 1,
-      "date": "2023-02-23",
-      "hour": "12:30",
-      "table": 1,
-      "repeat": false,
-      "duration": 4,
-      "ppl": 3,
-      "starters": []
-    }
-  ]
+  "bookings": []
 }
