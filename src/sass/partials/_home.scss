@@ -1,0 +1,68 @@
+/*photots*/
+
+.pizza-1 {
+  background-image: url(https://i.postimg.cc/BQLvcgJy/pizza-1.jpg);
+  margin-right: 4px;
+}
+
+.pizza-2 {
+  background-image: url(https://i.postimg.cc/cCbYrL0b/pizza-2.jpg);
+  margin-left: 4px;
+}
+
+.image {
+  background-position: center;
+  background-size: cover;
+}
+
+.home-wrapper {
+  margin: 42px auto;
+  padding: 72px 48px;
+  background: $color-light;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box a,
+.info {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.box {
+  flex: 1;
+  height: 96px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 2%;
+}
+
+.hide {
+  display: none;
+  transition-duration: 1s;
+}
+
+.box a:hover {
+  transform: translateY(-12px);
+  transition-duration: 1s;
+}
+
+.box a:hover + .hide {
+  display: block;
+  color: #fff;
+  font-size: 18px;
+}
+
+.opening {
+  background-color: #ff6b6b;
+  flex: 100%;
+  margin-top: 8px;
+}
