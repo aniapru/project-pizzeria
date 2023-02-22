@@ -1,4 +1,4 @@
-import BaseWidget from '../components/BaseWidget.js';
+import BaseWidget from './BaseWidget.js';
 import { select, settings } from '../settings.js';
 import { utils } from '../utils.js';
 
@@ -19,6 +19,7 @@ class HourPicker extends BaseWidget {
 
   initPlugin() {
     const thisWidget = this;
+
     // eslint-disable-next-line no-undef
     rangeSlider.create(thisWidget.dom.input);
     thisWidget.dom.input.addEventListener('input', function () {

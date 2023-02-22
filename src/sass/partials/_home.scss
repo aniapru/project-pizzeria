@@ -18,7 +18,7 @@
 .home-wrapper {
   margin: 42px auto;
   padding: 72px 48px;
-  background: $color-light;
+  background: lighten($color-dark, 75%);
   display: flex;
   flex-wrap: wrap;
 }
@@ -28,11 +28,11 @@
   text-decoration: none;
   text-transform: uppercase;
   font-size: 18px;
-  font-family: 'Oswald', sans-serif;
+  font-family: $font-header;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: $color-light;
 }
 
 .box {
@@ -47,22 +47,49 @@
 
 .hide {
   display: none;
-  transition-duration: 1s;
 }
 
 .box a:hover {
-  transform: translateY(-12px);
-  transition-duration: 1s;
+  transform: translateY(-6px);
+  transition-duration: 0.5s;
 }
 
 .box a:hover + .hide {
   display: block;
   color: #fff;
-  font-size: 18px;
+  font-size: 12px;
 }
 
 .opening {
   background-color: #ff6b6b;
   flex: 100%;
   margin-top: 8px;
+}
+
+.main-carousel {
+  width: 100%;
+  height: 230px;
+  margin: 50px 0;
+}
+
+.carousel-cell {
+  display: flex;
+}
+
+.carousel-cell img {
+  width: 50%;
+}
+
+.description {
+  margin: 0 18px;
+}
+
+.description p {
+  color: $color-dark;
+  font-size: 14px;
+}
+
+.description > p:last-child {
+  font-weight: bold;
+  font-size: 16px;
 }

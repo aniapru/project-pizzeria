@@ -14,6 +14,9 @@
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css" />
     <link rel="stylesheet" href="vendor/range-slider.min.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -81,24 +84,7 @@
 
     <div id="pages">
       <section id="home">
-        <div class="container">
-          <div class="home-wrapper">
-            <div class="box image pizza-1">
-              <a href="#order">order online</a>
-              <div class="hide">Lorem ipsum dolor sit amet</div>
-            </div>
-            <div class="box image pizza-2">
-              <a href="#booking">book a table</a>
-              <div class="hide">Lorem ipsum dolor sit amet</div>
-            </div>
-            <div class="box opening">
-              <div class="info">
-                opening hours:<br />
-                mon-sun, 12pm-11pm
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="home-wrapper container"></div>
       </section>
       <section id="order">
         <div id="product-list" class="product-list container"></div>
@@ -309,7 +295,79 @@
       </div>
     </script>
 
+    <script id="template-home" type="text/x-handlebars-template">
+      <div class='box image pizza-1'>
+        <a href='#order'>order online</a>
+        <div class='hide'>Lorem ipsum dolor sit amet</div>
+      </div>
+      <div class='box image pizza-2'>
+        <a href='#booking'>book a table</a>
+        <div class='hide'>Lorem ipsum dolor sit amet</div>
+      </div>
+      <div class='box opening'>
+        <div class='info'>
+          opening hours:<br />
+          mon-sun, 12pm-11pm
+        </div>
+      </div>
+      <div class='main-carousel'>
+        <div class='carousel-cell'>
+          <img
+            src='https://i.postimg.cc/QMhQPKmX/pizza-3.jpg'
+            alt='something'
+          />
+          <div class='description'>
+            <h4>Lorem ipsum</h4>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+              aut fugit, sed quia consequuntur magni dolores eos qui ratione.<br
+              /></p>
+            <p> - Gall Anonim</p>
+          </div>
+        </div>
+        <div class='carousel-cell'>
+          <img
+            src='https://i.postimg.cc/QMhQPKmX/pizza-3.jpg'
+            alt='something'
+          />
+          <div class='description'>
+            <h4>Lorem ipsum</h4>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+              aut fugit, sed quia consequuntur magni dolores eos qui ratione.<br
+              /></p>
+            <p> - Gall Anonim</p>
+          </div>
+        </div>
+        <div class='carousel-cell'>
+          <img
+            src='https://i.postimg.cc/QMhQPKmX/pizza-3.jpg'
+            alt='something'
+          />
+          <div class='description'>
+            <h4>Lorem ipsum</h4>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+              aut fugit, sed quia consequuntur magni dolores eos qui ratione.<br
+              /></p>
+            <p> - Gall Anonim</p>
+          </div>
+        </div>
+        <div class='carousel-cell'>
+          <img
+            src='https://i.postimg.cc/QMhQPKmX/pizza-3.jpg'
+            alt='something'
+          />
+          <div class='description'>
+            <h4>Lorem ipsum</h4>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+              aut fugit, sed quia consequuntur magni dolores eos qui ratione.<br
+              /></p>
+            <p> - Gall Anonim</p>
+          </div>
+        </div>
+      </div>
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="vendor/range-slider.min.js"></script>
     <script src="js/app.js" type="module"></script>
