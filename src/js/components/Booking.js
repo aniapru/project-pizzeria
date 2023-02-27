@@ -294,6 +294,8 @@ class Booking {
           payload.duration,
           payload.table
         );
+        thisBooking.updateDOM();
+        thisBooking.removeSelect();
       });
   }
 
