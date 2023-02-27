@@ -16,6 +16,7 @@
     "no-console": ["off"]
   },
   "globals": {
-    "Handlebars": false
+    "Handlebars": "readonly",
+    "rangeSlider": "readonly"
   }
 }
